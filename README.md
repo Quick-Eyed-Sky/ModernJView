@@ -1,5 +1,7 @@
 # ModernJView
 
+**⬅️ [You can download the app here](https://github.com/Quick-Eyed-Sky/ModernJView/releases/latest)** (see the "Assets" section of the release)
+
 A modern, native Apple Silicon rewrite of **JView**, the classic simple Mac picture viewer (next / previous / random navigation), built with Swift and SwiftUI.
 
 The original JView is a 2010-era universal binary (Intel/PowerPC) that macOS is deprecating support for. ModernJView reproduces its full feature set as a native, fast, arm64 app for Apple Silicon Macs, plus a few additions.
