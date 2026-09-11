@@ -1,33 +1,33 @@
 ModernJView — Comment lancer l'application
 =============================================
 
-Cette app n'est pas distribuée via l'App Store ni signée par un compte développeur Apple payant.
-Résultat : la première fois que tu essaies de l'ouvrir, macOS va afficher un avertissement de sécurité.
-C'est normal, l'app n'est pas dangereuse — il suffit d'autoriser son lancement une seule fois.
+Cette application n'est pas distribuée via l'App Store ni signée par un compte développeur Apple payant.
+Résultat : la première fois que vous essayez de l'ouvrir, macOS va afficher un avertissement de sécurité.
+C'est normal, l'application n'est pas dangereuse — il suffit d'autoriser son lancement une seule fois.
 
 MÉTHODE 1 (la plus simple, à essayer en premier)
 --------------------------------------------------
-1. Ne fais PAS un double-clic classique la première fois.
-2. Fais un clic droit (ou Ctrl + clic) sur "ModernJView.app".
-3. Choisis "Ouvrir" dans le menu qui apparaît.
+1. Ne faites PAS un double-clic classique la première fois.
+2. Faites un clic droit (ou Ctrl + clic) sur "ModernJView.app".
+3. Choisissez "Ouvrir" dans le menu qui apparaît.
 4. Une fenêtre d'avertissement s'affiche ("développeur non identifié" ou similaire) :
-   clique sur "Ouvrir" pour confirmer.
+   cliquez sur "Ouvrir" pour confirmer.
 5. C'est fait ! Les fois suivantes, un double-clic normal suffira.
 
 MÉTHODE 2 (si la Méthode 1 ne propose pas de bouton "Ouvrir")
 --------------------------------------------------
 Sur les versions récentes de macOS, un double-clic peut afficher un message bloquant
 sans aucun bouton pour continuer. Dans ce cas :
-1. Ouvre les Réglages Système (menu Pomme > Réglages Système).
-2. Va dans "Confidentialité et sécurité".
-3. Fais défiler vers le bas jusqu'à la section Sécurité :
-   tu devrais voir un message du type
+1. Ouvrez les Réglages Système (menu Pomme > Réglages Système).
+2. Allez dans "Confidentialité et sécurité".
+3. Faites défiler vers le bas jusqu'à la section Sécurité :
+   vous devriez voir un message du type
    "ModernJView.app a été bloqué afin de protéger votre Mac".
-4. Clique sur le bouton "Ouvrir quand même".
-5. Confirme avec ton mot de passe ou Touch ID si demandé.
-6. Relance ModernJView.app — il s'ouvrira normalement désormais.
+4. Cliquez sur le bouton "Ouvrir quand même".
+5. Confirmez avec votre mot de passe ou Touch ID si demandé.
+6. Relancez ModernJView.app — il s'ouvrira normalement désormais.
 
-Une fois cette autorisation donnée, l'app se lance normalement à chaque fois, comme n'importe quelle autre application.
+Une fois cette autorisation donnée, l'application se lance normalement à chaque fois, comme n'importe quelle autre application.
 
 ---
 ModernJView est une réécriture moderne (Apple Silicon, Swift/SwiftUI) de l'application

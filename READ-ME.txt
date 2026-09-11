@@ -1,0 +1,35 @@
+ModernJView — How to launch the app
+=============================================
+
+This app isn't distributed through the App Store and isn't signed with a paid Apple Developer account.
+As a result, the first time you try to open it, macOS will show a security warning.
+This is normal — the app isn't dangerous, you just need to authorize it to run, once.
+
+METHOD 1 (simplest, try this first)
+--------------------------------------------------
+1. Do NOT double-click it the first time.
+2. Right-click (or Ctrl-click) on "ModernJView.app".
+3. Choose "Open" from the menu that appears.
+4. A warning window will appear ("unidentified developer" or similar):
+   click "Open" to confirm.
+5. Done! From now on, a normal double-click will work.
+
+METHOD 2 (if Method 1 doesn't offer an "Open" button)
+--------------------------------------------------
+On recent versions of macOS, double-clicking may show a blocking message
+with no button to continue. If that happens:
+1. Open System Settings (Apple menu > System Settings).
+2. Go to "Privacy & Security".
+3. Scroll down to the Security section:
+   you should see a message like
+   "ModernJView.app was blocked to protect your Mac".
+4. Click the "Open Anyway" button.
+5. Confirm with your password or Touch ID if asked.
+6. Relaunch ModernJView.app — it will now open normally.
+
+Once you've authorized it this way, the app launches normally every time, just like any other app.
+
+---
+ModernJView is a modern rewrite (Apple Silicon, Swift/SwiftUI) of the original
+JView, created by Allan Liu.
+Source code: https://github.com/Quick-Eyed-Sky/ModernJView
