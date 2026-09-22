@@ -32,6 +32,12 @@ The build output then needs to be assembled into a `.app` bundle (Info.plist + i
 
 ModernJView is a modern rebuild of the original **JView**, created by **Allan Liu** ([home.nc.rr.com/jview/jbrowser.html](http://home.nc.rr.com/jview/jbrowser.html)).
 
+## ☕ Support
+
+If ModernJView is useful to you, you can [buy me a coffee](https://buymeacoffee.com/oFJ5CiY7n). Entirely optional, and the app stays exactly as free either way.
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/oFJ5CiY7n)
+
 ## License
 
 TBD.
