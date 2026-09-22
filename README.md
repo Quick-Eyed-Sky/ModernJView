@@ -36,7 +36,7 @@ ModernJView is a modern rebuild of the original **JView**, created by **Allan Li
 
 If ModernJView is useful to you, you can [buy me a coffee](https://buymeacoffee.com/oFJ5CiY7n). Entirely optional, and the app stays exactly as free either way.
 
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/oFJ5CiY7n)
+<a href="https://buymeacoffee.com/oFJ5CiY7n"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="28"></a>
 
 ## License
 
