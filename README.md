@@ -41,3 +41,11 @@ If ModernJView is useful to you, you can [buy me a coffee](https://buymeacoffee.
 ## License
 
 TBD.
+
+## What's new in 1.1.0
+
+### Faster startup
+
+ModernJView now opens the requested image immediately while scanning its folder in the background. This significantly improves startup responsiveness, especially when images are stored on external drives that need to wake from sleep.
+
+Folder navigation and existing behavior remain unchanged.

@@ -28,6 +28,8 @@ final class ImageBrowser: ObservableObject {
     private var randomHistory: [Int] = []
     private let settings = AppSettings.shared
     private var slideshowTimer: Timer?
+    private let scanQueue = DispatchQueue(label: "com.jp.modernjview.folder-scan", qos: .userInitiated)
+    private var loadGeneration: UInt = 0
 
     static let supportedExtensions: Set<String> = ["jpg", "jpeg", "png", "gif", "bmp", "tif", "tiff", "heic"]
 
@@ -36,21 +38,56 @@ final class ImageBrowser: ObservableObject {
         currentZoomPercent = settings.zoomPercent
     }
 
+    /// Opens a folder without blocking the main thread while its contents are indexed.
+    /// If a specific file was requested, show it immediately; the complete sibling list
+    /// is filled in as soon as the background scan finishes.
     func load(folder: URL, selecting fileToSelect: URL? = nil) {
+        loadGeneration &+= 1
+        let generation = loadGeneration
         currentFolder = folder
-        let depth = max(0, settings.folderSearchDepth)
-        var found: [URL] = []
-        scan(folder: folder, remainingDepth: depth, into: &found)
-        found.sort { $0.lastPathComponent.localizedStandardCompare($1.lastPathComponent) == .orderedAscending }
-        imageURLs = found
         randomHistory.removeAll()
-        if let target = fileToSelect?.standardizedFileURL,
-           let idx = found.firstIndex(where: { $0.standardizedFileURL == target }) {
-            currentIndex = idx
+
+        // A file-open request already gives us everything needed to display that file.
+        // Do not make the user wait for a potentially sleeping external disk to enumerate
+        // the whole folder before the requested image can be presented.
+        if let fileToSelect, Self.supportedExtensions.contains(fileToSelect.pathExtension.lowercased()) {
+            imageURLs = [fileToSelect]
+            currentIndex = 0
+            loadCurrent()
         } else {
-            currentIndex = found.isEmpty ? nil : 0
+            imageURLs = []
+            currentIndex = nil
+            currentImage = nil
+            currentError = nil
         }
-        loadCurrent()
+
+        let depth = max(0, settings.folderSearchDepth)
+        let target = fileToSelect?.standardizedFileURL
+
+        scanQueue.async { [weak self] in
+            var found: [URL] = []
+            Self.scan(folder: folder, remainingDepth: depth, into: &found)
+            found.sort { $0.lastPathComponent.localizedStandardCompare($1.lastPathComponent) == .orderedAscending }
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self, self.loadGeneration == generation else { return }
+
+                self.imageURLs = found
+                self.randomHistory.removeAll()
+                if let target,
+                   let idx = found.firstIndex(where: { $0.standardizedFileURL == target }) {
+                    self.currentIndex = idx
+                } else {
+                    self.currentIndex = found.isEmpty ? nil : 0
+                }
+
+                // For a direct file-open the requested image is already on screen.
+                // Avoid decoding it a second time after indexing.
+                if target == nil {
+                    self.loadCurrent()
+                }
+            }
+        }
     }
 
     func loadFiles(_ urls: [URL]) {
@@ -70,7 +107,7 @@ final class ImageBrowser: ObservableObject {
         load(folder: folder, selecting: keep)
     }
 
-    private func scan(folder: URL, remainingDepth: Int, into result: inout [URL]) {
+    private static func scan(folder: URL, remainingDepth: Int, into result: inout [URL]) {
         guard let entries = try? FileManager.default.contentsOfDirectory(
             at: folder, includingPropertiesForKeys: [.isDirectoryKey], options: [.skipsHiddenFiles]
         ) else { return }

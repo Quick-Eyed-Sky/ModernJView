@@ -121,10 +121,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, Obse
     @discardableResult
     private func openNewWindow(loading request: LoadRequest?, cascadeBatch: Bool = false) -> NSWindow {
         let browser = ImageBrowser()
-        if let request = request {
-            apply(request, to: browser)
-        }
 
+        // Build and show the window before touching the requested volume. This matters
+        // when an image lives on a sleeping external disk: filesystem I/O must not delay
+        // the visible launch of ModernJView itself.
         let hosting = NSHostingController(rootView: ContentView(browser: browser))
         let window = NSWindow(contentViewController: hosting)
         window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
@@ -149,6 +149,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, Obse
             }
         }
         NSApp.activate(ignoringOtherApps: true)
+
+        if let request = request {
+            DispatchQueue.main.async { [weak self, weak browser] in
+                guard let self, let browser else { return }
+                self.apply(request, to: browser)
+            }
+        }
         return window
     }
 
