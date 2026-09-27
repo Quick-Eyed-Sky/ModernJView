@@ -9,9 +9,9 @@
     <key>CFBundleIdentifier</key>
     <string>com.jp.modernjview</string>
     <key>CFBundleVersion</key>
-    <string>0.2</string>
+    <string>1.1.0</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.2</string>
+    <string>1.1.0</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
@@ -23,7 +23,7 @@
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>NSHumanReadableCopyright</key>
-    <string>Personal build for JP</string>
+    <string>Personal build by JP</string>
     <key>CFBundleDocumentTypes</key>
     <array>
         <dict>
